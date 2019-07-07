@@ -37,7 +37,14 @@ pipeline {
            steps {
                withMaven(maven : 'LocalMaven') {
                     sh 'mvn clean install'
-}
+               }
+           }
+        }
+        stage ('Deploy Stage') {
+          
+            steps {
+    sshagent (credentials: ['049815be-e736-4389-83ff-f8f0be109ead']) {
+    sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@54.157.142.126:/var/lib/tomcat/webapps '
 }
 }
 }
