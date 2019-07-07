@@ -21,6 +21,14 @@ pipeline {
            steps {
                withMaven(maven : 'LocalMaven') {
                     sh 'mvn clean test'
+               }
+           }
+        }
+        stage ('Package Stage') {
+
+           steps {
+               withMaven(maven : 'LocalMaven') {
+                    sh 'mvn clean package'
 }
 }
 }
